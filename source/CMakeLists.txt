@@ -1,9 +1,9 @@
 # Build example
 add_executable(example
+  vec.cpp
   window.cpp
   glew.c
   example.cpp
-  vec.cpp
   )
 target_link_libraries(example
   glfw
