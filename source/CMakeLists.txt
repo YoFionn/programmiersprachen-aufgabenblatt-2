@@ -1,5 +1,6 @@
 # Build example
 add_executable(example
+  vec2.cpp
   window.cpp
   glew.c
   example.cpp
@@ -16,6 +17,8 @@ add_dependencies(example glfw nanovg ${COPY_BINARY})
 add_executable(tests
   glew.c
   tests.cpp
+  vec2.cpp
+  example.cpp
   )
 target_link_libraries(tests
   glfw
