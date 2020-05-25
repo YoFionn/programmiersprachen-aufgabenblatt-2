@@ -105,10 +105,10 @@ TEST_CASE("Mat2 Aufgabe 2.6 Inverse","[mat2]")
   Mat2 c{};                                   //Es sollte kein ergebnis geben da die Determinante null ist.
   Mat2 standart{inverse(c)};                  //kann auch
 
-  REQUIRE(standart.e_00 == Approx(-2.0f));
-  REQUIRE(standart.e_10 == Approx(1.0f));
-  REQUIRE(standart.e_01 == Approx(1.5f));
-  REQUIRE(standart.e_11 == Approx(-0.5f));
+  REQUIRE(standart.e_00 == Approx(1.0f));
+  REQUIRE(standart.e_10 == Approx(0.0f));
+  REQUIRE(standart.e_01 == Approx(0.0f));
+  REQUIRE(standart.e_11 == Approx(1.0f));
 }
 
 TEST_CASE("Mat2 Aufgabe 2.6 Rotationsmatrix")

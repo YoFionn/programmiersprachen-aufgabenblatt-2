@@ -1,4 +1,4 @@
-struct color
+struct Color
 {
     //es wird ein Grau-wert als default gespeichert. Werte sollen im Intervall von 0 bis 1 liegen
 

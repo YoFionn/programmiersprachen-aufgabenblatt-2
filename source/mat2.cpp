@@ -1,5 +1,6 @@
 #include "mat2.hpp"
 #include <cmath>
+#include <iostream>
 
 Mat2& Mat2::operator*=(Mat2 const& m){
     float pos00 = e_00;
@@ -31,9 +32,18 @@ Mat2 operator*(Mat2 const& m1, Mat2 const& m2){
 
 Mat2 inverse(Mat2 const& m){
     Mat2 result{m};
+    if (result.det() == 0)
+    {
+        std::cout<<"Die Matrix besitzt kein Inverses"<<std::endl;
+        return m;
+    }
+    
+    else 
+    {
         float det{result.det()};
         Mat2 adj{(1/det)*result.e_11, (1/det)*(-result.e_10), (1/det)*(-result.e_01), (1/det)*result.e_00};
         return adj;
+    }
 };
 
 Mat2 transpose(Mat2 const& m){
