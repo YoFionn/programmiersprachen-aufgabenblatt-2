@@ -246,8 +246,8 @@ TEST_CASE("Aufgabe 2.9 Circle circumfence","[circle]"){
 
 TEST_CASE("Aufgabe 2.13 is_inside rectangle", "[circle]") {
 
-	Rect rec1{ {3.0f, 2.0f}, {2.5f, 5.0f}, {} };
-	Vec2 test1{1.0f, 1.0f};
+	Rect rec1{ {3.0f, 2.0f}, {5.5f, 5.0f}, {} };
+	Vec2 test1{4.0f, 3.0f};
 	Vec2 test2{ 4.0f, 7.0f };
 
 	REQUIRE(rec1.is_inside(test1) == true);

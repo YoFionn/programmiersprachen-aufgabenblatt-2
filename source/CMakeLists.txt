@@ -26,6 +26,7 @@ add_executable(tests
   mat2.cpp
   rectangle.cpp
   circle.cpp
+  window.cpp
   )
 
 target_link_libraries(tests
