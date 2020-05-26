@@ -189,7 +189,7 @@ TEST_CASE("Mat2 Aufgabe 2.6 Inverse","[mat2]")
   REQUIRE(standart.e_11 == Approx(1.0f));
 }
 
-TEST_CASE("Mat2 Aufgabe 2.6 Rotationsmatrix")
+TEST_CASE("Mat2 Aufgabe 2.6 Rotationsmatrix","[mat2]")
 {
   Mat2 normal{make_rotation_mat2(5.2)};
   Mat2 neg{make_rotation_mat2(-3.2)};
@@ -219,10 +219,10 @@ TEST_CASE("Mat2 Aufgabe 2.6 Rotationsmatrix")
 
 TEST_CASE("Aufgabe 2.9 Rectangle circumfence","[rectangle]"){
 
-  Rectangle rec1{{1.0f,1.0f},{1.0f,1.0f},{}};   
-  Rectangle rec2{{19.5f, 3.53f},{2.5f,3.7f},{}};
-  Rectangle rec3{{0.0f, 0.0f},{0.0f, 0.0f},{}};
-  Rectangle rec4{{-19.5f, -3.53f},{-2.5f, -3.7f},{}};
+	Rect rec1{{1.0f, 1.0f},{1.0f,1.0f},{}};   
+	Rect rec2{{19.5f, 3.53f},{2.5f,3.7f},{}};
+	Rect rec3{{0.0f, 0.0f},{0.0f, 0.0f},{}};
+	Rect rec4{{-19.5f, -3.53f},{-2.5f, -3.7f},{}};
 
 
   REQUIRE(rec1.circumfence() == Approx(0.0f));
@@ -243,6 +243,16 @@ TEST_CASE("Aufgabe 2.9 Circle circumfence","[circle]"){
   REQUIRE(c3.circumfence() == Approx(0.0f));   
   REQUIRE(c4.circumfence() == Approx(18.84956f));
   }
+
+TEST_CASE("Aufgabe 2.13 is_inside rectangle", "[circle]") {
+
+	Rect rec1{ {3.0f, 2.0f}, {2.5f, 5.0f}, {} };
+	Vec2 test1{1.0f, 1.0f};
+	Vec2 test2{ 4.0f, 7.0f };
+
+	REQUIRE(rec1.is_inside(test1) == true);
+	REQUIRE(rec1.is_inside(test2) == false);
+}
 
 int main(int argc, char *argv[])
 {

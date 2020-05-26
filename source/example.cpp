@@ -1,8 +1,10 @@
+#define _USE_MATH_DEFINES
 #include "window.hpp"
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
-
+#include "rectangle.hpp"
+#include "circle.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -25,6 +27,8 @@ int main(int argc, char* argv[])
 
     float x3 = 400.f + 380.f * std::sin(t-10.f);
     float y3 = 400.f + 380.f * std::cos(t-10.f);
+
+    
 
     win.draw_point(x1, y1, 1.0f, 0.0f, 0.0f);
     win.draw_point(x2, y2, 0.0f, 1.0f, 0.0f);
@@ -49,9 +53,20 @@ int main(int argc, char* argv[])
     int text_offset_x = 10;
     int text_offset_y = 5;
     unsigned int font_size = 35;
-    
+
     win.draw_text(text_offset_x, text_offset_y, font_size, display_text);
 
+    Rect rect1{ {200.0f, 260.0f}, {600.0f, 300.0f}, {0.255f, 0.0f, 0.255f} };
+    Rect rect2{ {300.0f, 500.0f}, {500.0f, 100.0f}, {0.255f, 0.0f, 0.155f} };
+
+    rect1.draw(win);
+    rect2.draw(win, 7.5f);
+
+    Circle c1{ {300.0f} , {400.0f, 400.0f} , {0.255f, 0.0f, 0.255f} };
+    Circle c2{ {200.0f} , {400.0f, 400.0f} , {0.255f, 5.0f, 0.0f} };
+
+    c1.draw(win);
+    c2.draw(win, 10.0f);
     win.update();
   }
 
