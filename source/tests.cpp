@@ -2,6 +2,8 @@
 #include <catch.hpp>
 #include "vec2.hpp"
 #include "mat2.hpp"
+#include "rectangle.hpp"
+#include "circle.hpp"
 
 //Vec2 add (Vec2 var1, Vec2 var2){return a + b;};
 
@@ -26,12 +28,88 @@ TEST_CASE("Vec2 Aufgabe 2.3 Addition","[vec2]")
 
 TEST_CASE("Mat2 Aufgabe 2.3 Subtraktion","[vec2]")
 {
-  Vec2 a{};;
+  Vec2 a{};
+  Vec2 b{};
+  Vec2 c{};
   Vec2 pos{5.1f, 9.3f};
-  Vec2 neg{-5.1f, -5.1f};
+  Vec2 neg{-5.1f, -9.3f};
   Vec2 null{0.0f, 0.0f};
-  a += pos;
-    
+  a -= pos;
+  b -= neg;
+  c -= null;
+
+  REQUIRE(a.x == Approx (-5.1f));
+  REQUIRE(a.y == Approx (-9.3f));
+  REQUIRE(b.x == Approx (5.1f));
+  REQUIRE(b.y == Approx (9.3f));
+  REQUIRE(c.x == Approx (0.0f));
+  REQUIRE(c.y == Approx (0.0f));
+}
+
+TEST_CASE("Mat2 Aufgabe 2.3 Multiplikation","[vec2]")
+{
+  Vec2 a{};
+  Vec2 b{};
+  Vec2 c{};
+  float pos{5.1f};
+  float neg{-5.1f};
+  float null{0.0f};
+  a *= pos;
+  b *= neg;
+  c *= null;
+
+  REQUIRE(a.x == Approx (0.0f));
+  REQUIRE(a.y == Approx (0.0f));
+  REQUIRE(b.x == Approx (0.0f));
+  REQUIRE(b.y == Approx (0.0f));
+  REQUIRE(c.x == Approx (0.0f));
+  REQUIRE(c.y == Approx (0.0f));
+}
+
+TEST_CASE("Mat2 Aufgabe 2.3 Division","[vec2]")
+{
+  Vec2 a_null{};
+  Vec2 b_null{};
+  Vec2 c_null{};
+  Vec2 a_pos{3.1f, 4.3f};
+  Vec2 b_pos{3.1f, 4.3f};
+  Vec2 c_pos{3.1f, 4.3f};
+  Vec2 a_neg{-3.1f, -4.3f};
+  Vec2 b_neg{-3.1f, -4.3f};
+  Vec2 c_neg{-3.1f, -4.3f};
+  float pos{5.1f};
+  float neg{-5.1f};
+  float null{0.0f};
+  a_null /= pos;
+  b_null /= neg;
+  c_null /= null;
+  a_pos /= pos;
+  b_pos /= neg;
+  c_pos /= null;
+  a_neg /= pos;
+  b_neg /= neg;
+  c_neg /= null;
+
+  REQUIRE(a_null.x == Approx (0.0f));
+  REQUIRE(a_null.y == Approx (0.0f));
+  REQUIRE(b_null.x == Approx (0.0f));
+  REQUIRE(b_null.y == Approx (0.0f));
+  REQUIRE(c_null.x == Approx (0.0f));
+  REQUIRE(c_null.y == Approx (0.0f));
+
+  REQUIRE(a_pos.x == Approx (0.607843f));
+  REQUIRE(a_pos.y == Approx (0.843137f));
+  REQUIRE(b_pos.x == Approx (-0.607843f));
+  REQUIRE(b_pos.y == Approx (-0.843137f));
+  REQUIRE(c_pos.x == Approx (0.0f));
+  REQUIRE(c_pos.y == Approx (0.0f));
+
+  REQUIRE(a_neg.x == Approx (-0.607843f));
+  REQUIRE(a_neg.y == Approx (-0.843137f));
+  REQUIRE(b_neg.x == Approx (0.607843f));
+  REQUIRE(b_neg.y == Approx (0.843137f));
+  REQUIRE(c_neg.x == Approx (0.0f));
+  REQUIRE(c_neg.y == Approx (0.0f));
 }
 
 TEST_CASE("Mat2 Aufgabe 2.5 Matrizenmultiplikation","[vec2]")
@@ -138,6 +216,33 @@ TEST_CASE("Mat2 Aufgabe 2.6 Rotationsmatrix")
   REQUIRE(eins.e_01 == Approx(0.841471f));
   REQUIRE(eins.e_11 == Approx(0.540302f));    
 }
+
+TEST_CASE("Aufgabe 2.9 Rectangle circumfence","[rectangle]"){
+
+  Rectangle rec1{{1.0f,1.0f},{1.0f,1.0f},{}};   
+  Rectangle rec2{{19.5f, 3.53f},{2.5f,3.7f},{}};
+  Rectangle rec3{{0.0f, 0.0f},{0.0f, 0.0f},{}};
+  Rectangle rec4{{-19.5f, -3.53f},{-2.5f, -3.7f},{}};
+
+
+  REQUIRE(rec1.circumfence() == Approx(0.0f));
+  REQUIRE(rec2.circumfence() == Approx(33.66f));   
+  REQUIRE(rec3.circumfence() == Approx(0.0f));
+  REQUIRE(rec4.circumfence() == Approx(33.66f));
+  }
+
+TEST_CASE("Aufgabe 2.9 Circle circumfence","[circle]"){   
+
+  Circle c1{};   
+  Circle c2{{3.0f}, {2.5f, 5.0f}, {}};
+  Circle c3{{0.0f}, {0.0f, 0.0f}, {}};   
+  Circle c4{{-3.0f}, {2.5f, 5.0f}, {}};  
+
+  REQUIRE(c1.circumfence() == Approx(0.0f));   
+  REQUIRE(c2.circumfence() == Approx(18.84956f));
+  REQUIRE(c3.circumfence() == Approx(0.0f));   
+  REQUIRE(c4.circumfence() == Approx(18.84956f));
+  }
 
 int main(int argc, char *argv[])
 {
