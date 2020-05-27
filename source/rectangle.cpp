@@ -18,7 +18,7 @@ float Rect::circumfence() const
     return fabs(2.0f * (umfang.x + umfang.y));
 }
 
-void Rect::draw(Window const& fensterchen) const
+void Rect::draw(Window const& fensterchen)
 {
     //unter waagerechte Linie
     fensterchen.draw_line(min_.x, min_.y, max_.x, min_.y, rgb_.r, rgb_.g, rgb_.b, 1.0f);
@@ -30,7 +30,7 @@ void Rect::draw(Window const& fensterchen) const
     fensterchen.draw_line(max_.x, max_.y, max_.x, min_.y, rgb_.r, rgb_.g, rgb_.b, 1.0f);
 }
 
-void Rect::draw(Window const& fensterchen, float t) const
+void Rect::draw(Window const& fensterchen, float t)
 {
     //unter waagerechte Linie
     fensterchen.draw_line(min_.x, min_.y, max_.x, min_.y, rgb_.r, rgb_.g, rgb_.b, t);

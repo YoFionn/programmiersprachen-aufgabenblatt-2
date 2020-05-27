@@ -11,8 +11,9 @@ public:
     Circle();
     Circle(float const& r, Vec2 const& base, Color const& rgb);
     float circumfence() const;  //const wird verwendet da 
-    void draw(Window const& fensterchen) const;
-    void draw(Window const& fensterchen, float const& t) const;
+    void draw(Window const& fensterchen);
+    void draw(Window const& fensterchen, float t);
+    bool is_inside(Vec2 const& Point)const;
 private:
     float r_{1.0f};
     Vec2 base_{};

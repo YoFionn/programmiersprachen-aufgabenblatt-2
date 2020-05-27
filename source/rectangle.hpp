@@ -9,8 +9,8 @@ class Rect{
         Rect();
         Rect(Vec2 const& min, Vec2 const& max, Color const& rgb);
         float circumfence() const;
-        void draw(Window const& fensterchen) const;
-        void draw(Window const& fensterchen, float t) const;
+        void draw(Window const& fensterchen);
+        void draw(Window const& fensterchen, float t);
         bool is_inside(Vec2 const& Point) const;
 
     private:

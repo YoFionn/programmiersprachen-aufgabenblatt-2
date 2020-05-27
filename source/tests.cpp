@@ -244,7 +244,7 @@ TEST_CASE("Aufgabe 2.9 Circle circumfence","[circle]"){
   REQUIRE(c4.circumfence() == Approx(18.84956f));
   }
 
-TEST_CASE("Aufgabe 2.13 is_inside rectangle", "[circle]") {
+TEST_CASE("Aufgabe 2.13 is_inside rectangle", "[rectangle]") {
 
 	Rect rec1{ {3.0f, 2.0f}, {5.5f, 5.0f}, {} };
 	Vec2 test1{4.0f, 3.0f};
@@ -252,6 +252,16 @@ TEST_CASE("Aufgabe 2.13 is_inside rectangle", "[circle]") {
 
 	REQUIRE(rec1.is_inside(test1) == true);
 	REQUIRE(rec1.is_inside(test2) == false);
+}
+
+TEST_CASE("Aufgabe 2.13 is_inside circle", "[circle]") {
+
+	Circle c1{ {10.0f}, {1.5f, 1.0f}, {} };
+	Vec2 test1{ 1.0f, 1.0f };
+	Vec2 test2{ 15.0f, 7.0f };
+
+	REQUIRE(c1.is_inside(test1) == true);
+	REQUIRE(c1.is_inside(test2) == false);
 }
 
 int main(int argc, char *argv[])

@@ -5,10 +5,31 @@
 #include <cmath>
 #include "rectangle.hpp"
 #include "circle.hpp"
+#include <array>
 
 int main(int argc, char* argv[])
 {
   Window win{std::make_pair(800,800)};
+
+  Rect rect1{ {200.0f, 260.0f}, {460.0f, 270.0f}, {0.0f, 0.2f, 0.0f} };
+  Rect rect2{ {300.0f, 600.0f}, {620.0f, 100.0f}, {0.255f, 0.599f, 0.155f} };
+  Rect rect3{ {20.0f, 360.0f}, {130.0f, 489.0f}, {0.255f, 0.7f, 0.90f} };
+  Rect rect4{ {370.0f, 120.0f}, {420.0f, 150.0f}, {0.00f, 0.1f, 0.155f} };
+  Rect rect5{ {160.0f, 230.0f}, {60.0f, 80.0f}, {0.0f, 0.0f, 0.255f} };
+  Rect rect6{ {50.0f, 700.0f}, {510.0f, 190.0f}, {0.0f, 0.3f, 0.155f} };
+  Rect rect7{ {500.0f, 500.0f}, {120.0f, 400.0f}, {0.0f, 0.0f, 0.255f} };
+  Rect rect8{ {250.0f, 30.0f}, {320.0f, 610.0f}, {0.89f, 9.0f, 0.155f} };
+  std::array<Rect, 8> all_rectangles = {rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8};
+
+  Circle c1{ {300.0f} , {500.0f, 450.0f} , {0.255f, 0.0f, 0.255f} };
+  Circle c2{ {200.0f} , {500.0f, 350.0f} , {0.255f, 5.0f, 0.0f} };
+  Circle c3{ {160.0f} , {300.0f, 420.0f} , {0.0f, 0.0f, 0.255f} };
+  Circle c4{ {70.0f} , {400.0f, 370.0f} , {0.255f, 5.0f, 0.0f} };
+  Circle c5{ {60.0f} , {50.0f, 430.0f} , {0.1f, 0.0f, 0.255f} };
+  Circle c6{ {29.0f} , {150.0f, 330.0f} , {0.255f, 0.9f, 12.0f} };
+  Circle c7{ {220.0f} , {250.0f, 310.0f} , {0.4f, 25.0f, 0.255f} };
+  Circle c8{ {150.0f} , {350.0f, 410.0f} , {0.122f, 0.7f, 0.0f} };
+  std::array<Circle, 8> all_circles = {c1, c2, c3, c4, c5, c6, c7, c8};
 
   while (!win.should_close()) {
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
@@ -56,17 +77,26 @@ int main(int argc, char* argv[])
 
     win.draw_text(text_offset_x, text_offset_y, font_size, display_text);
 
-    Rect rect1{ {200.0f, 260.0f}, {600.0f, 300.0f}, {0.255f, 0.0f, 0.255f} };
-    Rect rect2{ {300.0f, 500.0f}, {500.0f, 100.0f}, {0.255f, 0.0f, 0.155f} };
+    float Thick{ 2.0 };
+    Vec2 Position{mouse_position.first, mouse_position.second};
+    for (int i = 0; i < all_rectangles.size(); ++i){
+        if (all_rectangles[i].is_inside(Position)) {
+            all_rectangles[i].draw(win, Thick);
+        }
+        else {
+            all_rectangles[i].draw(win);}
+    }
 
-    rect1.draw(win);
-    rect2.draw(win, 7.5f);
 
-    Circle c1{ {300.0f} , {400.0f, 400.0f} , {0.255f, 0.0f, 0.255f} };
-    Circle c2{ {200.0f} , {400.0f, 400.0f} , {0.255f, 5.0f, 0.0f} };
+    for (int i = 0; i < all_circles.size(); ++i){
+        if (all_circles[i].is_inside(Position)){
+            all_circles[i].draw(win, Thick);
+        }
+        else{
+            all_circles[i].draw(win);
+        }
+    }
 
-    c1.draw(win);
-    c2.draw(win, 10.0f);
     win.update();
   }
 
